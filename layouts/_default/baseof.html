@@ -1,0 +1,63 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Site Title: Take Two</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- <link rel="manifest" href="site.webmanifest">
+        <link rel="apple-touch-icon" href="icon.png"> -->
+  <!-- Place favicon.ico in the root directory -->
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.2.13/dist/semantic.min.css">
+  <!-- <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/main.css"> -->
+</head>
+
+<body style="padding-top:3em">
+  <!--[if lte IE 9]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+        <![endif]-->
+
+  <div class="ui container">
+    <div class="ui grid container">
+      <h1 class="ui header four wide column">
+        <i class="book icon"></i>
+        <div class="content">Take Two
+          <div class="sub header">The Butler's in PNG</div>
+        </div>
+      </h1>
+      <div class="right floated right aligned twelve wide column">
+        <div class="ui compact tiny labeled icon menu">
+          <a class="active item">
+            <i class="talk icon"></i>
+            Articles
+          </a>
+          <a class="item">
+            <i class="exchange outline icon"></i>
+            Storylines
+          </a>
+          <a class="item">
+            <i class="users outline icon"></i>
+            People
+          </a>
+          <div class="ui icon large input">
+            <input type="text" placeholder="Search...">
+            <i class="search icon"></i>
+          </div>
+        </div>
+      </div>
+      {{ block "main" . }}{{ end }}
+      {{ partial "site-footer" . }}
+    </div>
+
+    {{ block "scripts" . }}{{ partial "site-scripts.html" . }}{{ end }}
+
+    <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
+    {{ template "_internal/google_analytics_async.html" . }}
+</body>
+
+</html>
