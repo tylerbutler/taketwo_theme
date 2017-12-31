@@ -1,0 +1,30 @@
+<div class="twelve wide column">
+  <div class="ui grid">
+    {{ range .Pages.GroupByDate "2006" "desc" }}
+    <div class="row">
+      <div class="four wide computer sixteen wide phone column">
+        <h2>
+          <a name="{{ .Key }}"></a>{{ .Key }}</h2>
+      </div>
+      <div class="twelve wide computer sixteen wide phone column">
+        <div class="ui grid">
+          {{ range .Pages.ByDate.Reverse }}
+          <article class="row">
+            <div class="four wide computer six wide phone column post-date">
+              {{ .Date.Format "02 Jan" }}
+            </div>
+            <div class="twelve wide computer ten wide phone column">
+              <h1>
+                <a href="{{ .URL }}">{{ .Title }}</a>
+              </h1>
+              {{ if not .Params.nodescription }} {{ with .Description }}
+              <p>{{ markdownify . }}</p>{{ end }} {{ end }}
+            </div>
+          </article>
+          {{ end }}
+        </div>
+      </div>
+    </div>
+    {{ end }}
+  </div>
+</div>
