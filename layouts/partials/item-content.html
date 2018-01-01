@@ -1,155 +1,16 @@
 <div class="ui grid container">
 
   <div class="row">
-    <div class="four wide column">
-      <div class="ui statistic" id="article-date">
-        <div class="value">
-          <i class="calendar icon"></i> {{ .Date.Format "2" }}
-        </div>
-        <div class="label">
-          {{ .Date.Format "January 2006" }}
-        </div>
-      </div>
+    <div class="three wide column">
+      {{ partial "item-date.html" . }}
 
-      {{ if isset .Params "tags" }}
-      <div class="ui segment">
-        <div class="ui teal top attached label">
-          <i class="tags icon"></i> Tags
-        </div>
-        <div class="container">
-          <p></p>
-          <div class="ui labels" id="tags">
-            {{ range .Params.tags }}
-              {{ with ($.Site.GetPage "taxonomyTerm" "tags" (. | urlize)) }}
-                <a class="ui basic teal label" href="{{ .Permalink }}">
-                  {{ .Title}}
-                </a>
-              {{ end }}
-            {{ end }}
-          </div>
-        </div>
-      </div>
-      {{ end }}
+      {{ partial "item-left-sidebar.html" . }}
     </div>
-    <div class="twelve wide column">
-        <h1 class="ui dividing header">{{ .Title }}</h1>
-        <div class="article-content">
-        {{ .Content }}
-      </div>
+    <div class="thirteen wide column">
+      {{ partial "item-article.html" . }}
     </div>
   </div>
 
-  {{ if isset .Params "people" }}
-  <div class="row">
-    <div class="column">
-      <div class="ui blue segment">
-          <div class="ui blue top attached label">
-            <i class="users outline icon"></i> People
-          </div>
-          <div class="ui labels" id="people">
-          {{ range .Params.people }}
-            {{ with ($.Site.GetPage "taxonomyTerm" "people" (. | urlize)) }}
-              <a class="ui blue basic image label" href="{{ .Permalink }}">
-                <img src="{{ .Params.images.small | default "/images/avatar/small/matt.jpg" }}">
-                {{ .Title}}
-                {{ with .Params.role }}
-                  <div class="detail">{{ . }}</div>
-                {{ end }}
-              </a>
-            {{ end }}
-          {{ end }}
-        </div>
-      </div>
-    </div>
-  </div>
-  {{ end }}
+  {{ partial "item-prev-next-horizontal.html" . }}
 
-  {{ if isset .Params "tags" }}
-    <div class="row">
-      <div class="ui middle aligned two wide column">
-        <h4 class="ui header">Tags</h4>
-      </div>
-      <div class="fourteen wide column">
-        <div class="ui tag labels" id="tags">
-          {{ range .Params.tags }}
-            {{ with ($.Site.GetPage "taxonomyTerm" "tags" (. | urlize)) }}
-              <a class="ui label" href="{{ .Permalink }}">{{ .Title}}</a>
-            {{ end }}
-          {{ end }}
-        </div>
-      </div>
-    </div>
-  {{ end }}
-
-
-  {{ if isset .Params "tags" }}
-  <div class="row">
-    <div class="column">
-      <div class="ui grey segment">
-          <div class="ui grey ribbon label">
-            <i class="tags icon"></i> Tags
-          </div>
-          <div class="container">
-            <p></p>
-            <div class="ui labels" id="tags">
-            {{ range .Params.tags }}
-              {{ with ($.Site.GetPage "taxonomyTerm" "tags" (. | urlize)) }}
-                <a class="ui blue image label" href="{{ .Permalink }}">
-                  <img src="/images/avatar/small/jenny.jpg">
-                  {{ .Title}}
-                  {{ with .Params.role }}
-                  <div class="detail">{{ . }}</div>
-                  {{ end }}
-                </a>
-              {{ end }}
-            {{ end }}
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  {{ end }}
-
-  {{ if isset .Params "people" }}
-  <div class="row">
-    <div class="ui middle aligned two wide column">
-      <h4 class="ui header">People</h4>
-    </div>
-    <div class="fourteen wide column">
-      <div class="ui basic horizontal segment">
-        <div class="ui red labels" id="tags">
-          {{ range .Params.people }}
-            {{ with ($.Site.GetPage "taxonomyTerm" "people" (. | urlize)) }}
-              <a class="ui blue basic image label" href="{{ .Permalink }}">
-                <img src="{{ .Params.images.small | default "/images/avatar/small/matt.jpg" }}">
-                {{ .Title}}
-                {{ with .Params.role }}
-                  <div class="detail">{{ . }}</div>
-                {{ end }}
-              </a>
-            {{ end }}
-          {{ end }}
-        </div>
-      </div>
-    </div>
-  </div>
-  {{ end }}
-
-  <div class="row">
-    {{ if .Next }}
-    <div class="eight wide column">
-      <a class="ui labeled basic icon button" href="{{ .Next.Permalink }}">
-        {{.Next.Title}} <i class="arrow left icon"></i>
-      </a>
-    </div>
-    {{ end }}
-
-    {{ if .Prev }}
-    <div class="right aligned eight wide column">
-      <a class="ui right labeled basic icon button" href="{{ .Prev.Permalink }}">
-        <i class="arrow right icon"></i> {{.Prev.Title}}
-      </a>
-    </div>
-    {{ end }}
-  </div>
 </div>

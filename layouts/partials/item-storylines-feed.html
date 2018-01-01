@@ -7,63 +7,63 @@
   </h3>
   {{ range $key, $value := $.Site.Taxonomies.storylines }}
     {{ if in $storylines ($key | urlize) }}
-        <!-- <h4 class="ui attached violet header">{{ $key | title }}</h4> -->
-        <div class="ui raised segment">
-          <a class="ui violet right ribbon label">{{ $key | title }}</a>
-          <div class="ui feed">
-            {{ $.Scratch.Set "first" true }}
-            {{ range $value.Pages.ByDate.Reverse }}
-              {{ $isCurrent := (eq $currentStory.Permalink .Permalink) }}
-              {{ if ($.Scratch.Get "first") }}
-                {{ $.Scratch.Set "days" 0 }}
-                {{ $.Scratch.Set "first" false }}
-              {{ else }}
-                {{ $previous := ($.Scratch.Get "previous") }}
-                {{ $.Scratch.Set "days" (div (sub .Date.Unix $previous.Date.Unix) 86400) }}
-              {{ end }}
-              {{ $.Scratch.Set "previous" . }}
-              <div class="event">
-                <div class="label">
-                  <i class="calendar icon"></i>
-                </div>
-                <div class="content">
-                  <div class="summary">
-                    {{ if $isCurrent }}
-                      {{ .Title }}
-                    {{ else }}
-                      <a href="{{ .Permalink }}">{{ .Title }}</a>
-                    {{ end }}
-                  </div>
-                  <div class="date">
-                    {{ $days := ($.Scratch.Get "days") }}
-                    {{ if (le $days 0) }}
-                      {{ (mul -1 $days) }} days before
-                    {{ else }}
-                      {{ $days }} days after
-                    {{ end }}
-                  </div>
-                  <div class="meta">
-                    {{ with .Params.tags }}
-                      <a class="">
-                        <i class="tags icon"></i> {{ len . }} tags
-                      </a>
-                    {{ end }}
-                    {{ with .Params.people }}
-                      <a class="">
-                        <i class="users outline icon"></i> {{ len . }} people
-                      </a>
-                    {{ end }}
-                  </div>
-                  {{ with .Description }}
-                    <div class="extra text">
-                      {{ . }}
-                    </div>
+      <!-- <h4 class="ui attached violet header">{{ $key | title }}</h4> -->
+      <div class="ui raised segment">
+        <a class="ui violet right ribbon label">{{ $key | title }}</a>
+        <div class="ui feed">
+          {{ $.Scratch.Set "first" true }}
+          {{ range $value.Pages.ByDate.Reverse }}
+            {{ $isCurrent := (eq $currentStory.Permalink .Permalink) }}
+            {{ if ($.Scratch.Get "first") }}
+              {{ $.Scratch.Set "days" 0 }}
+              {{ $.Scratch.Set "first" false }}
+            {{ else }}
+              {{ $previous := ($.Scratch.Get "previous") }}
+              {{ $.Scratch.Set "days" (div (sub .Date.Unix $previous.Date.Unix) 86400) }}
+            {{ end }}
+            {{ $.Scratch.Set "previous" . }}
+            <div class="event">
+              <div class="label">
+                <i class="calendar icon"></i>
+              </div>
+              <div class="content">
+                <div class="summary">
+                  {{ if $isCurrent }}
+                    {{ .Title }}
+                  {{ else }}
+                    <a href="{{ .Permalink }}">{{ .Title }}</a>
                   {{ end }}
                 </div>
+                <div class="date">
+                  {{ $days := ($.Scratch.Get "days") }}
+                  {{ if (le $days 0) }}
+                    {{ (mul -1 $days) }} days before
+                  {{ else }}
+                    {{ $days }} days after
+                  {{ end }}
+                </div>
+                <div class="meta">
+                  {{ with .Params.tags }}
+                    <a class="">
+                      <i class="tags icon"></i> {{ len . }} tags
+                    </a>
+                  {{ end }}
+                  {{ with .Params.people }}
+                    <a class="">
+                      <i class="users outline icon"></i> {{ len . }} people
+                    </a>
+                  {{ end }}
+                </div>
+                {{ with .Description }}
+                  <div class="extra text">
+                    {{ . }}
+                  </div>
+                {{ end }}
               </div>
-            {{ end}}
-          </div>
+            </div>
+          {{ end}}
         </div>
+      </div>
     {{ end }}
   {{ end }}
 </div>

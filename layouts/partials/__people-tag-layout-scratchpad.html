@@ -1,0 +1,95 @@
+{{ if isset .Params "people" }}
+<div class="row">
+  <div class="column">
+    <div class="ui blue segment">
+        <div class="ui blue top attached label">
+          <i class="users outline icon"></i> People
+        </div>
+        <div class="ui labels" id="people">
+        {{ range .Params.people }}
+          {{ with ($.Site.GetPage "taxonomyTerm" "people" (. | urlize)) }}
+            <a class="ui blue basic image label" href="{{ .Permalink }}">
+              <img src="{{ .Params.images.small | default "/images/wireframe/square-image.png" }}">
+              {{ .Title}}
+              {{ with .Params.role }}
+                <div class="detail">{{ . }}</div>
+              {{ end }}
+            </a>
+          {{ end }}
+        {{ end }}
+      </div>
+    </div>
+  </div>
+</div>
+{{ end }}
+
+{{ if isset .Params "tags" }}
+  <div class="row">
+    <div class="ui middle aligned two wide column">
+      <h4 class="ui header">Tags</h4>
+    </div>
+    <div class="fourteen wide column">
+      <div class="ui tag labels" id="tags">
+        {{ range .Params.tags }}
+          {{ with ($.Site.GetPage "taxonomyTerm" "tags" (. | urlize)) }}
+            <a class="ui label" href="{{ .Permalink }}">{{ .Title}}</a>
+          {{ end }}
+        {{ end }}
+      </div>
+    </div>
+  </div>
+{{ end }}
+
+
+{{ if isset .Params "tags" }}
+<div class="row">
+  <div class="column">
+    <div class="ui grey segment">
+        <div class="ui grey ribbon label">
+          <i class="tags icon"></i> Tags
+        </div>
+        <div class="container">
+          <p></p>
+          <div class="ui labels" id="tags">
+          {{ range .Params.tags }}
+            {{ with ($.Site.GetPage "taxonomyTerm" "tags" (. | urlize)) }}
+              <a class="ui blue image label" href="{{ .Permalink }}">
+                <img src="/images/avatar/small/jenny.jpg">
+                {{ .Title}}
+                {{ with .Params.role }}
+                <div class="detail">{{ . }}</div>
+                {{ end }}
+              </a>
+            {{ end }}
+          {{ end }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{{ end }}
+
+{{ if isset .Params "people" }}
+<div class="row">
+  <div class="ui middle aligned two wide column">
+    <h4 class="ui header">People</h4>
+  </div>
+  <div class="fourteen wide column">
+    <div class="ui basic horizontal segment">
+      <div class="ui labels" id="people">
+        {{ range .Params.people }}
+          {{ with ($.Site.GetPage "taxonomyTerm" "people" (. | urlize)) }}
+            <a class="ui blue basic image label" href="{{ .Permalink }}">
+              <img src="{{ .Params.images.small | default "/images/wireframe/square-image.png" }}">
+              {{ .Title}}
+              {{ with .Params.role }}
+                <div class="detail">{{ . }}</div>
+              {{ end }}
+            </a>
+          {{ end }}
+        {{ end }}
+      </div>
+    </div>
+  </div>
+</div>
+{{ end }}

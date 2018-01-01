@@ -1,0 +1,23 @@
+<h1 class="ui dividing header">{{ .Title }}</h1>
+
+{{ partial "item-people.html" . }}
+
+<div class="article-content">
+  {{ .Content }}
+</div>
+
+{{ if isset .Params "tags" }}
+<div class="ui center aligned basic segment">
+  <h4 class="ui grey horizontal divider header">
+    <i class="grey tag icon"></i>
+    Tags
+  </h4>
+  <div class="ui tag labels" id="tags">
+    {{ range .Params.tags }}
+      {{ with ($.Site.GetPage "taxonomyTerm" "tags" (. | urlize)) }}
+        <a class="ui label" href="{{ .Permalink }}">{{ .Title}}</a>
+      {{ end }}
+    {{ end }}
+  </div>
+</div>
+{{ end }}

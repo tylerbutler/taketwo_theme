@@ -1,0 +1,20 @@
+<div class="ui large list">
+  {{ if .Next }}
+  <a class="item" href="{{ .Next.Permalink }}">
+    <i class="arrow left icon"></i>
+    <div class="content">
+      <div class="header">Previous post</div>
+      <div class="description">{{ .Next.Title }}</div>
+    </div>
+  </a>
+  {{ end }}
+  {{ if .Prev }}
+  <a class="item" href="{{ .Prev.Permalink }}">
+    <i class="arrow right icon"></i>
+    <div class="content">
+      <div class="header">Next post</div>
+      <div class="description">{{ .Prev.Title }}</div>
+    </div>
+  </a>
+  {{ end }}
+</div>

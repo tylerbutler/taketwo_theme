@@ -1,0 +1,38 @@
+<div class="ui horizontal segments">
+  <div class="ui segment">
+      <div class="ui top attached label">
+          Written by
+      </div>
+      <div class="ui horizontal divided list">
+        {{ with ($.Site.GetPage "taxonomyTerm" "people" (.Params.author | default "William Butler" | urlize)) }}
+        <div class="item">
+          <img class="ui avatar image" src="{{ .Params.images.small | default "/images/wireframe/square-image.png" }}">
+          <div class="content">
+            <a class="header" href="{{ .Permalink }}">{{ .Title }}</a>
+            {{ .Params.role }}
+          </div>
+        </div>
+        {{ end }}
+      </div>
+  </div>
+  {{ if isset .Params "people" }}
+  <div class="ui segment">
+    <div class="ui top attached label">
+      Featuring
+    </div>
+    <div class="ui horizontal divided list">
+      {{ range .Params.people }}
+      {{ with ($.Site.GetPage "taxonomyTerm" "people" (. | urlize)) }}
+      <div class="item">
+        <img class="ui avatar image" src="{{ .Params.images.small | default "/images/wireframe/square-image.png" }}">
+        <div class="content">
+          <a class="header" href="{{ .Permalink }}">{{ .Title }}</a>
+          {{ .Params.role }}
+        </div>
+      </div>
+      {{ end }}
+      {{ end }}
+    </div>
+  </div>
+  {{ end }}
+</div>

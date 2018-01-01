@@ -22,43 +22,21 @@
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
         <![endif]-->
 
-  <div class="ui container">
-    <div class="ui grid container">
-      <h1 class="ui header four wide column">
-        <i class="book icon"></i>
-        <div class="content">Take Two
-          <div class="sub header">The Butler's in PNG</div>
-        </div>
-      </h1>
-      <div class="right floated right aligned twelve wide column">
-        <div class="ui compact tiny labeled icon menu">
-          <a class="active item">
-            <i class="talk icon"></i>
-            Articles
-          </a>
-          <a class="item">
-            <i class="exchange outline icon"></i>
-            Storylines
-          </a>
-          <a class="item">
-            <i class="users outline icon"></i>
-            People
-          </a>
-          <div class="ui icon large input">
-            <input type="text" placeholder="Search...">
-            <i class="search icon"></i>
-          </div>
-        </div>
-      </div>
-      {{ block "main" . }}{{ end }}
-      <div class="ui divider"></div>
-      {{ partial "site-footer" . }}
-    </div>
+  <div class="ui grid container">
 
-    {{ block "scripts" . }}{{ partial "site-scripts.html" . }}{{ end }}
+    {{ block "header" . }}
+      {{ partial "site-header.html" . }}
+    {{ end }}
 
-    <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
-    {{ template "_internal/google_analytics_async.html" . }}
+    {{ block "main" . }}{{ end }}
+    <div class="ui divider"></div>
+    {{ partial "site-footer.html" . }}
+  </div>
+
+  {{ block "scripts" . }}{{ partial "site-scripts.html" . }}{{ end }}
+
+  <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
+  {{ template "_internal/google_analytics_async.html" . }}
 </body>
 
 </html>

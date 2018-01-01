@@ -1,0 +1,17 @@
+<div class="row">
+  {{ if .Next }}
+  <div class="eight wide column">
+    <a class="ui labeled basic icon button" href="{{ .Next.Permalink }}">
+      <strong>Previous</strong> {{.Next.Title}} <i class="arrow left icon"></i>
+    </a>
+  </div>
+  {{ end }}
+
+  {{ if .Prev }}
+  <div class="right aligned eight wide column">
+    <a class="ui right labeled basic icon button" href="{{ .Prev.Permalink }}">
+      <i class="arrow right icon"></i> {{.Prev.Title}} <strong>Next</strong>
+    </a>
+  </div>
+  {{ end }}
+</div>
