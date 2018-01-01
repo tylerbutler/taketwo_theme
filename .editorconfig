@@ -13,3 +13,7 @@ indent_size = 4
 [*.{json,html,yaml,md,markdown,mdown}]
 indent_style = space
 indent_size = 2
+
+[*.{css,less}]
+indent_style = tab
+indent_size = 2
