@@ -7,14 +7,26 @@ var uglify = require('gulp-uglify');
 var pump = require('pump');
 var concat = require('gulp-concat');
 
+var semuiwatch = require('./semantic/tasks/watch');
+var semuibuild = require('./semantic/tasks/build');
+
+gulp.task('watchsemui', semuiwatch);
+gulp.task('buildsemui', semuibuild);
+
 gulp.task('default', ['build'], function () {
 	// none - just run the build task as a prereq :)
 });
 
-gulp.task('build', ['minify-css', 'minify-js'], function () {
+gulp.task('build', ['copy-libs', 'minify-css', 'minify-js'], function () {
 	// return gulp.src('./build/static/css/')
 	// 	.pipe(concatCss("dark_rainbow.css"))
 	// 	.pipe(gulp.dest('./static/css/'));
+});
+
+gulp.task('copy-libs', function() {
+	// Semantic CSS and JS
+	gulp.src('./semantic/dist/**/*.{min.css,min.js,woff,woff2,ttf}')
+	.pipe(gulp.dest('./static/static/semantic/'));
 });
 
 gulp.task('minify-css', ['build-less'], function () {
@@ -22,7 +34,7 @@ gulp.task('minify-css', ['build-less'], function () {
 		.pipe(cleanCSS({
 			compatibility: 'ie8'
 		}))
-		.pipe(gulp.dest('./static/css/'));
+		.pipe(gulp.dest('./static/static/css/'));
 });
 
 gulp.task('build-less', function () {
@@ -37,7 +49,7 @@ gulp.task('minify-js', ['build-js'], function (cb) {
 	pump([
 			gulp.src('./build/static/js/*.js'),
 			uglify(),
-			gulp.dest('./static/js/')
+			gulp.dest('./static/static/js/')
 		],
 		cb
 	);
