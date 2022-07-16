@@ -15,7 +15,7 @@
             </div>
             <div class="twelve wide computer ten wide phone column">
               <h1>
-                <a href="{{ .URL }}">{{ .Title }}</a>
+                <a href="{{ .RelPermalink }}">{{ .Title }}</a>
               </h1>
               {{ if not .Params.nodescription }} {{ with .Description }}
               <p>{{ markdownify . }}</p>{{ end }} {{ end }}

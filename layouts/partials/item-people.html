@@ -4,11 +4,11 @@
           Written by
       </div>
       <div class="ui horizontal divided list">
-        {{ with ($.Site.GetPage "taxonomyTerm" "people" (.Params.author | default "William Butler" | urlize)) }}
+        {{ with ($.Site.GetPage (path.Join "people" (.Params.author | default "William Butler" | urlize))) }}
         <div class="item">
           <img class="ui avatar image" src="{{ .Params.images.small | default "/images/wireframe/square-image.png" }}">
           <div class="content">
-            <a class="header" href="{{ .Permalink }}">{{ .Title }}</a>
+            <a class="header" href="{{ .RelPermalink }}">{{ .Title }}</a>
             {{ .Params.role }}
           </div>
         </div>
@@ -22,11 +22,11 @@
     </div>
     <div class="ui horizontal divided list">
       {{ range .Params.people }}
-      {{ with ($.Site.GetPage "taxonomyTerm" "people" (. | urlize)) }}
+      {{ with ($.Site.GetPage (path.Join "people" (. | urlize))) }}
       <div class="item">
         <img class="ui avatar image" src="{{ .Params.images.small | default "/images/wireframe/square-image.png" }}">
         <div class="content">
-          <a class="header" href="{{ .Permalink }}">{{ .Title }}</a>
+          <a class="header" href="{{ .RelPermalink }}">{{ .Title }}</a>
           {{ .Params.role }}
         </div>
       </div>

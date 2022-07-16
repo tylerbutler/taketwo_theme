@@ -1,0 +1,12 @@
+{{ define "main" }}
+<div class="row">
+  {{ with ($.Site.GetPage (printf "/%s" "people")) }}
+    {{ range .Pages }}
+      {{ partial "list-item.html" . }}
+    {{ end }}
+  {{ end }}
+  <div class="four wide column">
+    <div class="ui segment">Taxonomy list: Sidebar content...</div>
+  </div>
+</div>
+{{ end }}

@@ -14,8 +14,8 @@
   </h4>
   <div class="ui tag labels" id="tags">
     {{ range .Params.tags }}
-      {{ with ($.Site.GetPage "taxonomyTerm" "tags" (. | urlize)) }}
-        <a class="ui label" href="{{ .Permalink }}">{{ .Title}}</a>
+      {{ with ($.Site.GetPage (path.Join "tags" (. | urlize))) }}
+        <a class="ui label" href="{{ .RelPermalink }}">{{ .Title}}</a>
       {{ end }}
     {{ end }}
   </div>
